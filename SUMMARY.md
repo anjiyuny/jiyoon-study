@@ -11,3 +11,4 @@
 
 * [😇 01. 변수](undefined/01..md)
 * [😀 02. 변수](undefined/02..md)
+* [☺ 변수 연습문제](undefined/undefined.md)
