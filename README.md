@@ -1,167 +1,118 @@
----
-description: this 키워드를 알아보자 1. 함수와 Object에서 사용하면?
----
+# 22.10.20
 
-# 😴 01. this
+```
+//1. Use stricy
+//added in ES 5
+// use this for valina Javascript.
+'use strict';
+console.log (age);
+//2. Variable
+// let (added in ES6)
+// javaScript에서 변수를 선언할수 있는것은 딱 하나 let 이 유일
 
-
-
-**1-1. 그냥 쓰거나 함수 안에서 쓰면 this는 window를 뜻한다.**
-
-```javascript
-console.log(this)
-
-function 함수(){
-    console.log(this)
+let globalName = 'global name'; // 파일 안에다 바로 정의해서 쓰는 변수는 global scope 
+// 글로벌한 변수들은 어플리케이션이 실행되는 순간부터 끝날때까지 항상 메모리에 탐재되어 있기 떄문에
+//최소한으로 쓰는것이 좋고, 가능하면 class 나 함수 if , for 등 필요한 순간에만 정의해서 쓰는것이 좋다.
+{
+    let name = 'jiyoon';
+    console.log (name);
+    name = 'hello';
+    console.log(name);
+    console.log(globalName); //global scope 은 블럭 안이든 밖이든 어느곳에서나 접근이 가능하다 
 }
-함수();
+// block scope 사용하게 되면 더이상 블럭 밖에서는 블럭 안의 내용을 볼수 없게 된다
+
+console.log (name); // 이렇게 블럭밖에서 name이라는 변수에  접근하게 되면 아무것도 출력되지 않는다
+console.log(globalName);//global scope 은 블럭 안이든 밖이든 어느곳에서나 접근이 가능하다
+
+// var (don't ever use this!)
+//var hoisting (move declaration from bottom to top)
+// 호이스팅 ==> (끌어올려주다)어디에 선언했는지 관계없이 항상 선언을 제일 위로 끌어올려주는것을 말한다
+// var has no block scope!!!
+
+
+// var --> 변수를 선언한후, 값을 할당하는게 정상적인 반면 
+// var 은 값을 할당하고 변수를 선언해도 console에 error가 뜨지 않는 미친짓을 할수있다
+// undefined >> 변수는 정의되어있지만 값이 아직 안들어가 있네?? 라고 출력됌
+{
+    age = 4;
+    var age;
+} //var 는 block scope을 철저히 무시한다
+console.log (age);
+//age = 4;
+//console.log (age); // 이렇게 값을 위에 주고 콘솔로그로 변수를 호출하면 값이 4로 나오는 크레이지 매직
+//var age;
+
+//name = 4;
+//let name; // var과 똑같은 짓을해도 let은 error를 출력한다 이게 정상임 ㅇㅇ
+
+
+//3. Contants          
+//favor immutable data type always for a few reasons --> 왠만하면 값을 할당한 다음에 변경되지 않는 데이터 타입을 사용해라
+//- security
+//- thread safety 
+//- reduce human mistakes
+const dayInWeek = 7;
+const maxNumber = 5; //const 는 한번 값을 설정하면 바뀔수 없다  
+
+// 자바스크립트 안에는 mutable type-let & immutable type-const  두개의 변수를 선언할수있다 //
+
+//4. variable type 
+//primitive, single item: nember, string, boolean, null, undefiedn, symbol
+//object, box container
+//funtion, first-class funtion   
+
+const count = 17; // integer(정수)
+const size = 17.1; // decimal number(소수점)  // 정수와 소수점에 상관없이 콘솔에서는 type number로 출력된다
+console.log(`value: ${count}, type: ${typeof count}`);
+console.log(`value: ${size}, type: ${typeof size}`);
+
+//number - speicla numeric values: infinity, -infinity, NaN(= not a Number)
+const infinity = 1 / 0; // 포지티비 숫자를 0으로 나누면 infinity로 출력이 된다
+const negativeInfinity = -1 / 0; // 네거티브 숫자를 0으로 나누면 네거티브인피니티로 출력이 된다
+const nAn = 'not a number' / 2;  // 숫자가 아닌것은 nAn 으로 출력이 된다
+console.log(infinity);
+console.log(negativeInfinity);
+console.log(nAn);
+
+//bigInt (fairly new, don't use it yet)
+//const bigInt = 1234567890123456789012345678901234567890n; // over (-2**52)~(2*53) 자바스크립트에서 표현가능한 숫자
+//console.log('value: ${bigInt}, type: ${typeof bigInt}');
+
+//string
+const char = 'c';
+const brendan = 'brendan';
+const greeting = 'hello ' + brendan;
+console.log(`value: ${greeting}, type: ${typeof greeting}`);
+const helloBob = `hi ${brendan}!`; // template literals (string)
+console.log(`value: ${helloBob}, type: ${typeof helloBob}`);
+console.log('value: ' + helloBob + ' type:' + typeof helloBob);
+
+//boolen
+//false:0, null, undefined, NaN, ''
+const canRead = true; // 트루라고 바로 값을 할당해되고 3이1보다 작다 는 false니까 저런식으로 할당해도 댐
+const test = 3 < 1; //false
+console.log(`value: ${canRead}, type: ${typeof canRead}`);
+console.log(`value: ${test}, type: ${typeof test}`);
+
+//null 
+let nothing = null;  // null은 텅텅비어있는값이야
+console.log(`value: ${nothing}, type: ${typeof nothing}`);
+
+//undefined
+let x; // 아무값도 할당되어있지 않은 상태
+console.log(`value: ${x}, type: ${typeof x}`);
+
+//symbol, create unique identifiers for object
+const symbol1 = Symbol('id');
+const symbol2 = Symbol('id'); // 고유한 식별자가 필요할떄 사용 동일한 string을 사용해도 다르게 식별된다
+console.log(symbol1===symbol2); // false라고 출력댐
+const gSymbol1 = Symbol.for('id');
+const gSymbol2 = Symbol.for('id');
+console.log(gSymbol1===gSymbol2); // true
+console.log(`value: ${symbol1.description}, type: ${typeof symbol1}`); // .description을 붙여 string으로 변환해야 error가 안뜬다
+
+//5.Dynamic typing: dynamically typed language ==> 
+let text = 'hello';
+console.log(`value`)
 ```
-
-위와 같이 아무것도 없는 상태에서 this를 호출하면 `window`  가 출력된다.    &#x20;
-
-
-
-그렇다면 window 란 무엇일까??
-
-> window는 모든 전역변수, 함수, Dom을 보관하고 관리 하는 <mark style="color:blue;">전역 객체</mark> 이다.
-
-
-
-쉽게 얘기하자면 document, getElementById(), alert(), console.log().....\
-이런 함수들을 보관하는 보관소 == 큰 { 오브젝트 } 라고 한다.
-
-
-
-또한,
-
-<mark style="color:blue;">이렇게 전역 변수를 만든다면, x 라는 변수는 window라는 큰 오브젝트안에 자동적으로 생성된다.</mark>
-
-```javascript
-var x = 300;
-```
-
-\*전역변수 : 코드 내 모든 곳에서 참조해서 쓸 수 있는 범용적인, 범위가 넓은 변수입니다.&#x20;
-
-그냥 script태그 내에 쌩으로 var 변수 하나 만들면 그건 자연스레 전역변수가 됩니다.
-
-
-
-
-
-
-
-**1-2.  strict mode일 때 함수 안에서 쓰면 this는 undefined 이다.**
-
-```javascript
- 'use strict';
-
-  function 함수(){
-    console.log(this)
-  }
-  함수();
-```
-
-IE 10 버전 이상에서 'use strict' 라는 키워드를 페이지 최상단에 추가하면
-
-strict mode로 자바스크립트를 작성 할 수 있다.
-
-strict mode 에서는 var 키워드 없이 변수를 선언하거나,
-
-변수 arguments라는 이상한 키워드로 선언하는 실수를 방지해준다고 한다.
-
-<mark style="color:blue;">strict mode 에서는 this 키워드를 일반 함수 안에서 불렀을때 undefinded 라는 값으로 강제로 지정한다.</mark>
-
-
-
-
-
-**1-3.  object 자료형 내에 함수들이 있을 수 있는데 거기서 this값은 '주인님'을 뜻합니다.**
-
-```javascript
-
-var 오브젝트 = {
-             data : 'kim',
-             함수 : function(){
-                console.log(this) // 나를포함하고 있는 obj
-             }
-        }
-        오브젝트.함수();
-        // object안에 있는 함수 호출하는 방법
-        
-        //오브젝트에 들어가는 함수들을 '메소드 method' 라고 함
-        
-```
-
-위와같이 하면 콘솔창에 `{data: 'kim', 함수: ƒ}` 이런게 출력되는데, 이건 var 오브젝트 를 말하는것이다.
-
-즉 메소드 안에서 this를 쓰면 <mark style="color:red;">**this 메소드를 가지고 있는 오브젝트**</mark>를 뜻하게 된다.
-
-
-
-**✍️ 연습문제 : 아래의 this는 어떤걸 출력할까?**
-
-```javascript
-var 오브젝트2 = {
-    data : {
-        함수 : function(){
-            console.log(this)
-        }
-    }
-}
-```
-
-오브젝트의 메소드안에서 썼을 때 this는 메소드를 담고있는 주인님을 뜻하기 때문에
-
-간지함수()를 담고있는 주인님인 **오브젝트2.data** 라는게 위의 this랑 동일한 뜻입니다.&#x20;
-
-
-
-
-
-
-
-### &#x20; :thumbsup: 사실 위에서 배운 this는 다 같은 의미다
-
-
-
-1번과 2번의 this는 같은 의미이다. 2번만 잘 안다면 1번도 쉽게 이해할수 있다.
-
-
-
-우리가 함수나 변수를 스크립트 태그 안에 만들었을 때, 함수나 변수는 그냥 만들어 지는것이 아니다.
-
-```markup
-<script>
-    function 함수(){
-        console.log()
-    }
-</script>
-```
-
-위 코드에서의 함수() 는 전역변수나 전역함수를 관리하기 위한 window라는 오브젝트에 자동으로 추가된다.
-
-
-
-
-
-```javascript
-  (1)
-  function 간지나는함수(){
-    console.log(this)
-  }
-
-  (2)
-  window.간지나는함수 = function(){ console.log() };
-  //window라는 오브젝트에 함수자료 추
-```
-
-위의코드(1),(2) 는 똑같다.
-
-<mark style="color:blue;">즉, 전역함수 만들거나 전역변수 만들게 되면   window {오브젝트} 안에 담긴다.</mark>
-
-
-
-
-
-### :smile: 결국 this는 오브젝트 내의 매소드(함수)에서 사용했을때 상위 오브젝트를 출력해준다
-

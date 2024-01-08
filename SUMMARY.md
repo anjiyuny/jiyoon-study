@@ -1,18 +1,19 @@
 # Table of contents
 
-## 👩💻 this
-
-* [😴 01. this](README.md)
-* [🤨 02.this](this/02.this.md)
-* [😮 03.arrow function](this/03.arrow-function.md)
-* [🥸 this 연습문제](this/this.md)
-
-## 👩💻 변수
-
-* [😇 01. 변수](undefined/01..md)
-* [😀 02. 변수](undefined/02..md)
-* [☺ 변수 연습문제](undefined/undefined.md)
-
-## 👩💻 Template literals
-
-* [👩🏫 Template literals](template-literals/template-literals.md)
+* [22.10.20](README.md)
+* [22.10.27 공부](https://app.gitbook.com/o/yqQss4NhzPkwd1b96yLY/s/eleGyFmUINNai7J53XJq/)
+* [Page 1](page-1/README.md)
+  * [22.10.30 공부](https://app.gitbook.com/o/yqQss4NhzPkwd1b96yLY/s/f3o5ebVC7DMKJwKQUscQ/)
+* [Page 2](page-2/README.md)
+  * [22.11.01 공부](https://app.gitbook.com/o/yqQss4NhzPkwd1b96yLY/s/0J4C020fZ5u60myTHenm/)
+* [Page 3](page-3/README.md)
+  * [22.11.07 공부](https://app.gitbook.com/o/yqQss4NhzPkwd1b96yLY/s/Cvv779VzPOqcUIv2Ainr/)
+* [Page 4](page-4/README.md)
+  * [2211달\_2주차\_hey..분발plz](https://app.gitbook.com/o/yqQss4NhzPkwd1b96yLY/s/1qfTZJnImiCSoYN4MzFA/)
+* [Page 5](page-5/README.md)
+  * [2211달\_3주차\_정리](https://app.gitbook.com/o/yqQss4NhzPkwd1b96yLY/s/3m2kV5GwuaZ8YCER4HXw/)
+* [Page 6](page-6/README.md)
+  * [2211달\_4주차\_정리](https://app.gitbook.com/o/yqQss4NhzPkwd1b96yLY/s/nfOsLXLKWGXm3D4LXAEE/)
+* [Page 7](page-7/README.md)
+  * [230103\_Switch](https://app.gitbook.com/o/yqQss4NhzPkwd1b96yLY/s/YhuXgqJ2CY1WwTCA3vnS/)
+* [Page 8](page-8.md)
